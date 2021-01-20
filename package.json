@@ -1,0 +1,31 @@
+{
+  "name": "daily-notes",
+  "version": "1.0.0",
+  "description": "CICCC mid-term project",
+  "main": "app/index.js",
+  "repository": "git@github.com:rowaxl/daily-notes.git",
+  "author": "rowaxl <rowaxl0@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development babel-node ./app/index.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./app -s",
+    "build": "yarn clean && yarn build-server",
+    "serve": "NODE_ENV=production node ./build/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.18.0",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13"
+  }
+}
