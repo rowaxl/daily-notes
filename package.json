@@ -7,7 +7,9 @@
   "author": "rowaxl <rowaxl0@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development babel-node ./app/index.js",
+    "start:dev": "NODE_ENV=development nodemon --delay 300ms --exec babel-node app/index.js",
+    "start:lint": "esw app",
+    "start": "concurrently \"yarn start:dev\" \"yarn start:lint\"",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./app -s",
     "build": "yarn clean && yarn build-server",
@@ -19,13 +21,32 @@
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "babel-eslint": "^10.1.0",
+    "concurrently": "^5.3.0",
     "eslint": "^7.18.0",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-watch": "^7.0.0",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.13"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "import"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ]
   }
 }
