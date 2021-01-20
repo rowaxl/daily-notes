@@ -7,13 +7,13 @@
   "author": "rowaxl <rowaxl0@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon --delay 300ms --exec babel-node app/index.js",
-    "start:lint": "esw app",
-    "start": "concurrently \"yarn start:dev\" \"yarn start:lint\"",
+    "dev:serve": "NODE_ENV=development nodemon --delay 300ms --exec babel-node app/index.js",
+    "dev:lint": "esw app",
+    "dev": "concurrently \"yarn start:dev\" \"yarn start:lint\"",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./app -s",
     "build": "yarn clean && yarn build-server",
-    "serve": "NODE_ENV=production node ./build/index.js"
+    "start": "NODE_ENV=production node ./build/index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
