@@ -1,0 +1,43 @@
+<div id="edit-modal-wrap" class="modal" tabindex="-1">
+  <div id="edit-modal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Edit Article
+          (
+          <span id="edit-title"></span>
+          )
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="article-title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="edit-article-title" required>
+            <div class="error-message error-edit-title hide">
+              Title cannot be empty!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="article-author" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="edit-article-author" required>
+            <div class="error-message error-edit-name hide">
+              Name cannot be empty!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="article-contents" class="col-form-label">Contents:</label>
+            <textarea class="form-control" id="edit-article-contents" required></textarea>
+            <div class="error-message error-edit-contents hide">
+              Contents cannot be empty!
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="close-edit-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="edit-save-btn" type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

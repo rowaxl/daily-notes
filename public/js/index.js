@@ -8,6 +8,23 @@ $(document).ready(() => {
   const authorInput = $('#article-author')
   const contentsInput = $('#article-contents')
 
+  const editBtns = $('.button-edit')
+  const editModal = $('#edit-modal')
+  const editModalWrap = $('#edit-modal-wrap')
+  const editModalTitle = $('#edit-title')
+  const editTitle = $('#edit-article-title')
+  const editAuhtor = $('#edit-article-author')
+  const editContent = $('#edit-article-contents')
+  const editSaveButton = $('#edit-save-btn')
+  const editCloseButton = $('#close-edit-modal-btn')
+
+  const deleteBtns = $('.button-delete')
+  const deleteModal = $('#delete-modal')
+  const deleteModalWrap = $('#delete-modal-wrap')
+  const deleteArticleTitle = $('#delete-article-title')
+  const confirmDeleteBtn = $('#delete-confirm-btn')
+  const closeDeleteBtn = $('#close-delete-modal-btn')
+
   const commentsBtn = $('.button-comment')
   const commentSaveBtn = $('#save-comment-btn')
   const commentsCloseBtn = $('#close-comment-modal-btn')
@@ -34,6 +51,28 @@ $(document).ready(() => {
     titleInput.val('')
     authorInput.val('')
     contentsInput.val('')
+  }
+
+  const openDeleteModal = () => {
+    deleteModal.modal('toggle')
+    deleteModalWrap.show()
+    deleteModal.removeAttr("style")
+  }
+
+  const closeDeleteModal = () => {
+    deleteModal.modal('toggle')
+    deleteModalWrap.hide()
+  }
+
+  const openEditModal = () => {
+    editModal.modal('toggle')
+    editModalWrap.show()
+    editModal.removeAttr("style")
+  }
+
+  const closeEditModal = () => {
+    editModal.modal('toggle')
+    editModalWrap.hide()
   }
 
   const validate = (value, type) => {
@@ -64,6 +103,37 @@ $(document).ready(() => {
     commentContents.val('')
 
     commentSaveBtn.data('articleId', '')
+  }
+
+  function loadDeleteTarget() {
+    const id = $(this).data('articleId')
+    confirmDeleteBtn.data('articleId', id)
+    
+    $.get(`/api/articles/${id}`, (data) => {
+      const { result: { title } } = data
+
+      deleteArticleTitle.empty()
+
+      deleteArticleTitle.append(title)
+
+      openDeleteModal()
+    })
+  }
+
+  function loadEditTarget() {
+    const id = $(this).data('articleId')
+    editSaveButton.data('articleId', id)
+    
+    $.get(`/api/articles/${id}`, (data) => {
+      const { result: { title, author, contents } } = data
+
+      editModalTitle.append(title)
+      editTitle.val(title)
+      editAuhtor.val(author)
+      editContent.val(contents)
+
+      openEditModal()
+    })
   }
 
   function loadComments() {
@@ -159,6 +229,42 @@ $(document).ready(() => {
     })
   }
 
+  function deleteArticle() {
+    const articleId = $(this).data('articleId')
+
+    $.ajax({
+      url: `/api/articles/${articleId}`,
+      method: 'DELETE',
+    }).done((data) => {
+      console.log({ data })
+
+      location.reload()
+    })
+  }
+
+  function updateArticle() {
+    const articleId = $(this).data('articleId')
+    const title = validate(editTitle.val(), 'edit-title')
+    const author = validate(editAuhtor.val(), 'edit-name')
+    const contents = validate(editContent.val(), 'edit-contents')
+
+    if (!title || !author || !contents) return
+
+    $.ajax({
+      url: `/api/articles/${articleId}`,
+      method: 'PUT',
+      data: {
+        title,
+        author,
+        contents
+      }
+    }).done((data) => {
+      console.log({ data })
+
+      location.reload()
+    })
+  }
+
   openModalBtn.on('click', openInputModal)
   closeModalBtn.on('click', closeInputModal)
 
@@ -170,4 +276,12 @@ $(document).ready(() => {
 
   likeBtn.each(renderLiked)
   likeBtn.on('click', toggleLiked)
+
+  deleteBtns.on('click', loadDeleteTarget)
+  confirmDeleteBtn.on('click', deleteArticle)
+  closeDeleteBtn.on('click', closeDeleteModal)
+
+  editBtns.on('click', loadEditTarget)
+  editCloseButton.on('click', closeEditModal)
+  editSaveButton.on('click', updateArticle)
 })

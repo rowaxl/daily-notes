@@ -33,9 +33,22 @@
           </div>
     
           <div class="card-footer text-muted">
-            <h6 class="card-subtitle mb-2">
-              By: <%= post.author %> (<%= post.createdAt.toLocaleString() %>)
-            </h6>
+            <div class="row align-items-center">
+              <div class="col-9">
+                <span class="h6 card-subtitle mb-2">
+                  By: <%= post.author %> (<%= post.createdAt.toLocaleString() %>)
+                </span>
+              </div>
+
+              <div class="col-3">
+                <button type="button" class="btn button-edit" data-article-id="<%= post.id %>">
+                  <i class="bi bi-pencil" style="font-size: 1.2rem;"></i>
+                </button>
+                <button type="button" class="btn button-delete" data-article-id="<%= post.id %>">
+                  <i class="bi bi-trash" style="font-size: 1.2rem; color: red;"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       <% } %>
@@ -45,5 +58,7 @@
 
 <%- include('./partials/commentsModal') %>
 <%- include('./partials/articleModal') %>
+<%- include('./partials/deleteConfirmModal') %>
+<%- include('./partials/editArticleModal') %>
 
 <%- include('./partials/foot') %>
