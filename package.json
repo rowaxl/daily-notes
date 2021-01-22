@@ -9,7 +9,7 @@
   "scripts": {
     "dev:serve": "NODE_ENV=development nodemon --delay 300ms --exec babel-node app/index.js",
     "dev:lint": "esw app",
-    "dev": "concurrently \"yarn start:dev\" \"yarn start:lint\"",
+    "dev": "concurrently \"yarn dev:serve\" \"yarn dev:lint\"",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./app -s",
     "build": "yarn clean && yarn build-server",
@@ -28,10 +28,13 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "mongoose": "^5.11.13"
+    "mongoose": "^5.11.13",
+    "regenerator-runtime": "^0.13.7"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -47,6 +50,9 @@
     },
     "extends": [
       "eslint:recommended"
+    ],
+    "ignorePatterns": [
+      "**/public/**"
     ]
   }
 }

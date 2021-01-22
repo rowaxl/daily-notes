@@ -1,0 +1,23 @@
+.posts {
+  flex-direction: column;
+}
+
+pre.card-text {
+  max-width: 100%;
+  white-space: pre-line;
+}
+
+.floating-action-btn {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+}
+
+.error-message {
+  display: block;
+  color: red;
+}
+
+.error-message.hide {
+  display: none;
+}

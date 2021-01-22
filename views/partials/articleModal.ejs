@@ -1,0 +1,42 @@
+<button id="open-modal-btn" class="btn rounded-pill btn-primary floating-action-btn">
+  <i class="bi bi-plus" style="font-size: 2rem; font-weight: 900;"></i>
+</button>
+
+<div id="input-modal-wrap" class="modal" tabindex="-1">
+  <div id="input-modal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Write An Article</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="article-title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="article-title" required>
+            <div class="error-message error-title hide">
+              Title cannot be empty!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="article-author" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="article-author" required>
+            <div class="error-message error-name hide">
+              Name cannot be empty!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="article-contents" class="col-form-label">Contents:</label>
+            <textarea class="form-control" id="article-contents" required></textarea>
+            <div class="error-message error-contents hide">
+              Contents cannot be empty!
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="save-btn" type="button" class="btn btn-primary">Save </button>
+      </div>
+    </div>
+  </div>
+</div>

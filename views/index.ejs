@@ -1,0 +1,49 @@
+<%- include('./partials/head') %>
+
+<div class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col">
+      <% for (let post of posts) { %>
+        <div class="card w-50 mt-4 mx-auto">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= post.title %>
+            </h5>
+    
+            <pre class="card-text">
+<%= post.contents %>
+            </p>
+          </div>
+    
+          <div class="card-body">
+            <button type="button" class="btn button-comment" data-article-id="<%= post.id %>">
+              <i class="bi bi-chat-left-text" style="font-size: 1.5rem;"></i>
+            </button>
+            <b>
+              (<%= post.comments.length %>)
+            </b>
+
+
+            <button type="button" class="btn button-like" data-article-id="<%= post.id %>">
+            </button>
+    
+            <b>
+              (<%= post.liked %>)
+            </b>
+          </div>
+    
+          <div class="card-footer text-muted">
+            <h6 class="card-subtitle mb-2">
+              By: <%= post.author %> (<%= post.createdAt.toLocaleString() %>)
+            </h6>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/commentsModal') %>
+<%- include('./partials/articleModal') %>
+
+<%- include('./partials/foot') %>

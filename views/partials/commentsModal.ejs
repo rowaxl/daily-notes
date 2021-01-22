@@ -1,0 +1,37 @@
+<div id="comment-modal-wrap" class="modal" tabindex="-1">
+  <div id="comment-modal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Comments</h5>
+      </div>
+
+      <div class="modal-body">
+        <ul id="comments" class="list-group">
+        </ul>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="comment-author" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="comment-author" required>
+            <div class="error-message error-comment-name hide">
+              Name cannot be empty!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="comment-contents" class="col-form-label">Comments:</label>
+            <input type="text" class="form-control" id="comment-contents" required>
+            <div class="error-message error-comment hide">
+              Comments cannot be empty!
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="close-comment-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="save-comment-btn" type="button" class="btn btn-primary">Write Comment</button>
+      </div>
+    </div>
+  </div>
+</div>
